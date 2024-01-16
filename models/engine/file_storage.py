@@ -13,11 +13,11 @@ class FileStorage:
         if cls is not None:
             if type(cls) == str:
                 cls = eval(cls)
-            cls_dict = {}
-            for k, v in self.__objects.items():
-                if type(v) == cls:
-                    cls_dict[k] = v
-            return cls_dict
+            cls_dictio = {}
+            for i, j in self.__objects.items():
+                if type(j) == cls:
+                    cls_dictio[i] = j
+            return cls_dictio
         return self.__objects
 
     def new(self, obj):
