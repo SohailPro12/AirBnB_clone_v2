@@ -18,12 +18,12 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship("City",  backref="state", cascade="delete")
 
-    def city_instances(self):
-        """list of City instances with state_id
-        equals to the current State.id for FileStorage"""
-        city_instances = []
-        if getenv("HBNB_TYPE_STORAGE") != "db":
+    if getenv("HBNB_TYPE_STORAGE") != "db":
+        def city_instances(self):
+            """list of City instances with state_id
+            equals to the current State.id for FileStorage"""
+            city_instances = []
             for city in list(models.storage.all(City).values()):
                 if city.state_id == self.id:
                     city_instances.append(city)
-        return city_instances
+            return city_instances
