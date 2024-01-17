@@ -113,16 +113,16 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
-    def do_create(self, line):
+    def do_create(self, args):
         """Usage: create <class> <key 1>=<value 2> <key 2>=<value 2>"""
         try:
-            if not line:
+            if not args:
                 raise SyntaxError()
-            my_list = line.split(" ")
+            listM = args.split(" ")
 
             kwargs = {}
-            for i in range(1, len(my_list)):
-                key, value = tuple(my_list[i].split("="))
+            for i in range(1, len(listM)):
+                key, value = tuple(listM[i].split("="))
                 if value[0] == '"':
                     value = value.strip('"').replace("_", " ")
                 else:
@@ -133,9 +133,9 @@ class HBNBCommand(cmd.Cmd):
                 kwargs[key] = value
 
             if kwargs == {}:
-                obj = eval(my_list[0])()
+                obj = eval(listM[0])()
             else:
-                obj = eval(my_list[0])(**kwargs)
+                obj = eval(listM[0])(**kwargs)
                 storage.new(obj)
             print(obj.id)
             obj.save()
