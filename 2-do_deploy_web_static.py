@@ -25,7 +25,7 @@ def do_deploy(archive_path):
         run('mkdir -p {}{}/'.format(path, name))
         run('tar -xzf /tmp/{} -C {}{}/'.format(file_name, path, name))
         """Clean Up Temporary Files"""
-        run('rm /tmp/{}'.format(file_n))
+        run('rm /tmp/{}'.format(file_name))
         """Move Web Static Content and Remove Original Folder"""
         run('mv {0}{1}/web_static/* {0}{1}/'.format(path, name))
         run('rm -rf {}{}/web_static'.format(path, name))
