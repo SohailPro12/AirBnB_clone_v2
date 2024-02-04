@@ -8,7 +8,7 @@ from sqlalchemy.orm import relationship
 from models.amenity import Amenity
 from models.review import Review
 
-place_amenity = Table("place_amenity", Base.metadata,
+place_amenities = Table("place_amenity", Base.metadata,
                       Column("place_id", String(60),
                              ForeignKey("places.id"),
                              primary_key=True, nullable=False),
@@ -35,7 +35,7 @@ class Place(BaseModel, Base):
 
     reviews = relationship("Review", backref="place", cascade="delete")
     amenities = relationship("Amenity", secondary="place_amenity",
-                             viewonly=False)
+                            back_populates=False)
 
     if getenv("HBNB_TYPE_STORAGE", None) != "db":
         @property
