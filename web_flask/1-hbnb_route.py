@@ -14,6 +14,7 @@ def hello_hbnb():
     """display hello hbnb!"""
     return "Hello HBNB!"
 
+
 # routing the decorator function hbnb
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
